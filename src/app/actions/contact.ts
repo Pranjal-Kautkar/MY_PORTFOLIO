@@ -22,7 +22,9 @@ export async function submitContactForm(data: ContactInput) {
           message: validatedData.message,
         })
         
-      if (dbError) throw new Error("Database error: " + dbError.message)
+      if (dbError) {
+        console.warn("Supabase insert skipped/failed:", dbError.message)
+      }
     }
 
     // 3. Send email using Resend
